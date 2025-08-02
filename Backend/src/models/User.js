@@ -23,11 +23,11 @@ const userSchema= new mongoose.Schema(
             type: String,
             default: "",
         },
-        nativelanguage: {
+        nativeLanguage: {
             type: String,
             default: "",
         },
-        learninglanguage: {
+        learningLanguage: {
             type: String,
             default: "",
         },
