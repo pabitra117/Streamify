@@ -129,5 +129,7 @@ export async function getFriendRequest(req, res) {
         res.status(200).json({incomingRequests,acceptedRequests});
 
 
-    } catch (error) {}
+    } catch (error) {
+        
+    }
 }
