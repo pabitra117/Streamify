@@ -79,3 +79,55 @@ export async function sendFriendRequest(req, res) {
         res.status(500).json({ message: "Internal server error" });
     }
 }
+
+export async function acceptFriendRequest(req, res) {
+    try {
+        const { id: requestId } = req.params;
+
+        const request = await FriendRequest.findById(requestId);
+        if (!friendrequest) {
+            return res.status(404).json({ message: "Friend request not found"});
+        }
+
+        // verify the current user is the recipient 
+            if (friendrequest.recipient.toString() !== req.user.id) {
+            return res.status(403).json({ message: "You are not authorized to accept this request"});
+        }
+
+        friendRequest.status = "accepted";
+        await friendRequest.save();
+
+        // add each userto the other's friends array
+        // $addToSet: adds elements to an array only if they do not already exist.
+        await User.findByIdAndUpdate(friendRequest.sender, {
+            $addToSet: { friends: friendRequest.recipient },
+        });
+
+        await User.findByIdAndUpdate(friendRequest.recipient, {
+            $addToSet: { friends: friendRequest.sender },
+        });
+
+        res.status(200).json({ message: "Friend request accepted" });
+    } catch (error) {
+        console.log("Error in acceptFriendRequest controller", error.message);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
+
+export async function getFriendRequest(req, res) {
+    try{
+        const incomingRequests = await FriendRequest.find({
+            recipient: req.user.id,
+            status: "pending"
+        }).populate("sender", "fullName profilePic nativeLanguage learningLanguage");
+
+        const acceptedRequests = await FriendRequest.find({
+            recipient: req.user.id,
+            status: "accepted"
+        }).populate("recipient", "fullName profilePic");
+
+        res.status(200).json({incomingRequests,acceptedRequests});
+
+
+    } catch (error) {}
+}
