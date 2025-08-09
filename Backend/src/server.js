@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth_route.js";
 import userRoutes from "./routes/user_route.js";
+import chatRoutes from "./routes/chat_route.js";
 
 
 import { connectDB } from "./lib/db.js";
@@ -17,6 +18,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/chat", chatRoutes);
 
 
 app.listen(PORT,() => {
