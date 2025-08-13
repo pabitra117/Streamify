@@ -42,7 +42,7 @@ const App = () => {
 
         
       </Routes>
-
+      
       <Toaster />
     </div>
   );
