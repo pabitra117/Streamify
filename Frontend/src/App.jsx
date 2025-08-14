@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
@@ -10,7 +10,7 @@ import OnboardingPage from "./pages/OnboardingPage.jsx";
 import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { axiosInstance } from "./lib/axios.js";
 
 
 
@@ -21,12 +21,14 @@ const App = () => {
     queryKey:["todos"],
 
     queryFn: async () =>{
-      const res = await axios.get("https://jsonplaceholder.typicode.com/todos");
+      const res = await axiosInstance.get("http://localhost:5001/api/auth/me");
       return res.data;
     },
   });
 
   console.log(data);
+
+
  
   return (
     <div className=" h-screen text-5xl" data-theme="night">
