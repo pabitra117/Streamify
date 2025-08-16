@@ -33,12 +33,6 @@ const App = () => {
   return (
     <div className=" h-screen text-5xl" data-theme="night">
 
-       {/* Show your image */}
-      <img src="/i.png" alt="Video Call" />
-
-
-      {/* Your routes */}
-
       <Routes>
         <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
         <Route path="/signup" element={!authUser ? <SignUpPage />: <Navigate to="/"/>} />
