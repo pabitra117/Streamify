@@ -19,6 +19,7 @@ const SignUpPage = () => {
     <div className="border border=primary/25 flex flex-col lg:flex-row w-full max-w-5xl mx-auto bg-base-100 rounded-xl shadow-lg overflow-hidden">
 
       {/*SIGNUP FORM - LEFT SIDE*/}
+
       <div className="w-full lg:w-1/2 p-4 sm:p-8 flex flex-col">
       {/*LOGO*/}
       <div className="mb-4 flex items-center justify-start gap-2">
@@ -106,6 +107,22 @@ const SignUpPage = () => {
           </div>
         </form>
        </div>
+      </div>
+
+      {/* SIGNUP FORM - RIGHT SIDE*/}
+      <div className="flex lg:flex w-full lg:w-1/2 bg-primary/10 items-center justify-center">
+      <div className="max-w-md p-8">
+        {/* Illustration */}
+        <div className="relative aspect-square max-w-sm mx-auto">
+          <img src="/i.png" alt="Language connection illustration" className="w-full h-full" />
+          </div>
+          <div className="text-center space-y-3 mt-6">
+            <h2 className="text-xl font-semibold">Connect with language partners worldwide</h2>
+            <p className="opacity-70">
+              Practice conversation, make friends, and improve your language skills together
+           </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>;
